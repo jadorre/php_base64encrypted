@@ -1,6 +1,6 @@
 <?php
 class Base64_Encrypted{
-private static $clef="I90ehjx5cHEt6WqXvYBVmQo7USaKgCb81fyuwMpNlFikZzTDrOPd3A2LsnJGR4+/";
+private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("error parameter");
