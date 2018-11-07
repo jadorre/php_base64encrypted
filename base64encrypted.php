@@ -5,8 +5,7 @@ private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("error parameter");
 $u=array("","");
-if($xx){$u=mcrypt_create_iv(6,MCRYPT_DEV_URANDOM);$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
-$l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
+if($xx){$u=function_exists("random_bytes")?random_bytes(6):(function_exists("openssl_random_pseudo_bytes")?openssl_random_pseudo_bytes(6):(function_exists("mcrypt_create_iv")?mcrypt_create_iv(6,MCRYPT_DEV_URANDOM):(@file_exists("/dev/urandom")?file_get_contents("/dev/urandom",NULL,NULL,mt_rand(0,100),6):die("No way to generate random bytes"))));$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}$l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u[1].$mda);$na=$js=self::Hashich($u[1].$j);
 $c=strlen($a);
 self::$val=-67108864;
